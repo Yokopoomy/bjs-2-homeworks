@@ -5,24 +5,27 @@ class PrintEditionItem{
 		this.name = name;
 		this.releaseDate = releaseDate;
 		this.pagesCount = pagesCount;
-		this.state = 100;
+		this._state = 100;
 		this.type = null;
+	}
+	
+	set state(value){
+		if(value <= 0){
+			this._state = 0;
+		}else if(value >= 100){
+			this._state = 100;
+		}else{
+			this._state = value;
+		}
+	}
+
+	get state(){
+		return this._state;
 	}
 
 	fix(){
-		let tempState = this.state * 1.5;
-		if(tempState >= 100){
-			this.state = 100;
-		}else{
-			this.state = tempState;
-		}
-	}
-	
-	set _state(state){
-		if(state >= 100 || state <= 0){
-			this.state = state;
-		}
-		this.fix();
+		let newState = this._state * 1.5;
+		this.state = newState;
 	}
 }
 
@@ -118,7 +121,7 @@ class Student{
 	getAverageBySubject(subjName){
 		if(this.marks[subjName]){
 			let result = this.marks[subjName].reduce(function(sum, current) {
-				return sum + current
+				return sum + current;
 			});
 			return result/this.marks[subjName].length;
 		}else{
