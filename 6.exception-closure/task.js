@@ -13,7 +13,7 @@ function validateCount(value){
  try {
   return parseCount(value);
  } catch(err) {
-  throw new Error(err);
+  return err;
  }
 }
 
