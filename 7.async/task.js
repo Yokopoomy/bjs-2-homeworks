@@ -27,7 +27,6 @@ class AlarmClock{
 
  getCurrentFormattedTime(){
   let today = new Date();
-  console.log(today.getMinutes());
   return today.getHours() + ":" + String(today.getMinutes()).padStart(2, '0');
  }
 
